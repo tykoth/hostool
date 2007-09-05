@@ -1,0 +1,6 @@
+<? /* link: conteudo, href, array */ ?>
+<? 
+  	for($q=0;$q<=11;$q++){
+  		echo $html->link($html->image("product-001.jpg", array("width" => "100", "height" => "100")) . "Lâmpada Vapor de Sódio Ovóide de 70W","#",array("class" => "ctg-img"), false, false); 
+ 	}
+?>
