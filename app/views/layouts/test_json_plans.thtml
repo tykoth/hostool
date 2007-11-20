@@ -1,0 +1,6 @@
+var plans = [
+{id:1, label:"Plano Bronze"},
+{id:2, label:"Plano Silver"},
+{id:3, label:"Plano Gold"},
+{id:4, label:"Plano Platinum"},
+]

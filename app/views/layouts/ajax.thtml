@@ -1,0 +1,1 @@
+<?= utf8_encode($content_for_layout) ?>

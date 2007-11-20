@@ -1,0 +1,191 @@
+<?
+
+$CONF_SIGNFORM = array(
+'ALLOW_MULTIPLE_ADDRESSES' => true,
+);
+
+$LANG_SIGNFORM = array(
+'CLIENT_NAME' => 		array('label' => "Nome", 'tip' => "Insira seu nome"),
+'CLIENT_SURNAME' => 	array('label' => "Sobrenome", 'tip' => "Insira seu sobrenome"),
+'CLIENT_NAME' => 		array('label' => "Nome", 'tip' => "Insira seu nome"),
+'CLIENT_NAME' => 		array('label' => "Nome", 'tip' => "Insira seu nome"),
+'CLIENT_NAME' => 		array('label' => "Nome", 'tip' => "Insira seu nome"),
+'CLIENT_NAME' => 		array('label' => "Nome", 'tip' => "Insira seu nome"),
+'CLIENT_NAME' => 		array('label' => "Nome", 'tip' => "Insira seu nome"),
+'CLIENT_NAME' => 		array('label' => "Nome", 'tip' => "Insira seu nome"),
+'CLIENT_NAME' => 		array('label' => "Nome", 'tip' => "Insira seu nome"),
+'CLIENT_NAME' => 		array('label' => "Nome", 'tip' => "Insira seu nome"),
+'CLIENT_NAME' => 		array('label' => "Nome", 'tip' => "Insira seu nome"),
+);
+?>
+
+<style>
+/* Corpo completo */
+body {
+font-family:Verdana;
+font-size:12px;
+text-align:center;
+}
+/* Div central que sustenta todo o formulário */
+.form {
+diplay:block;
+width:550px;
+margin:0 auto;
+}
+/* Fieldsets que sustentam sessões separadas do formulário */
+fieldset {
+background:#ffffff;
+border:1px solid black;
+text-align:left;
+padding:5px;
+}
+/* Topo do fieldset */
+legend {
+border:1px solid black;
+background:#efcded;
+padding:5px;
+}
+
+fieldset p {
+margin:0px;
+width:100%;
+clear:both;
+}
+
+fieldset p label {
+display:block;
+border:1px solid black;
+width:48%;
+height:20px;
+float:left;
+}
+
+fieldset div.radiobutton {
+float:left;
+display:block;
+border:1px solid black;
+}
+
+pre {
+text-align:left;
+}
+
+
+
+.cakeSqlLog {
+background:#CDDECD; width:100%;
+}
+.cakeSqlLog tr, cakeSqlLog td {
+border:1px solid black;
+}
+</style>
+<?
+/*
+isso vai ser feito a loooooongo prazo :p
+$LNG_FIELDS = array(
+'Client' => array(
+	'name' => array('label' => 'Nome', 'description' => 'Nome de cadastro do cliente'),
+	'surname'
+	)
+
+)
+*/
+?>
+<div class="form">
+<form method="POST" action="">
+	<fieldset id="client_data"><legend>Informações pessoais</legend>
+	    <p><label>name:				</label> <input type="text" name="data[Client][name]" size="40"></p>
+	    <p><label>surname:			</label> <input type="text" name="data[Client][surname]" size="40"></p>
+	    <p><label>preferredname:	</label> <input type="text" name="data[Client][preferredname]" size="40"></p>
+	    <p><label>birthdate:		</label> <input type="text" name="data[Client][birthdate]" size="40"></p>
+	    <p><label>gender:			</label> <input type="radio" name="data[Client][gender]" value="0">male<input type="radio" name="data[Client][gender]" value="1"> female</p>
+	    <p><label>maritalstatus:	</label> 
+	    	<select name="data[Client][maritalstatus]">
+	    		<option selected="selected" value=""> - choose an option -</option>
+				<option value="1">single</option>
+				<option value="2">married</option>
+				<option value="3">committed</option>
+				<option value="4">open marriage</option>
+				<option value="5">open relationship</option>
+	    	</select>
+	    </p>
+	    <p><label>rg:				</label> <input type="text" name="data[Client][rg]" size="40"></p>
+	    <p><label>cpf:				</label> <input type="text" name="data[Client][cpf]" size="40"></p>
+	    <p><label>cnpj:				</label> <input type="text" name="data[Client][cnpj]" size="40"></p>    
+	    <p><label>companyname:		</label> <input type="text" name="data[Client][companyname]" size="40"></p>    
+    </fieldset>
+    
+    <fieldset id="adress_data"><legend>Informações de endereçamento</legend>
+    <input type="button" value="Adicionar um endereço" onclick="addAddress()">
+	    <div class="adress">
+		    <p><label>address: 		</label> <input type="text" name="data[Address][0][address]" size="40"></p>  
+		    <p><label>address_c: 	</label> <input type="text" name="data[Address][0][address_c]" size="40"></p>  
+		    <p><label>neighborhood: </label> <input type="text" name="data[Address][0][neighborhood]" size="40"></p>  
+		    <p><label>zipcode: 		</label> <input type="text" name="data[Address][0][zipcode]" size="40"></p>  
+		    <p><label>city: 		</label> <input type="text" name="data[Address][0][city]" size="40"></p>  
+		    <p><label>state: 		</label> <input type="text" name="data[Address][0][state]" size="40"></p>  
+		    <p><label>country: 		</label> <input type="text" name="data[Address][0][country]" size="40"></p>  
+		</div>		
+    </fieldset>
+    <fieldset id="phone_data"><legend>Contato via telefone</legend>
+    	<p><label>phone: 		</label> <input type="text" name="data[Phone][phone]" size="40"></p>  
+		<p><label>phone_type: 	</label> 	<input type="radio" name="data[Phone][phone_type]" value="0">home
+											<input type="radio" name="data[Phone][phone_type]" value="1">cel
+											<input type="radio" name="data[Phone][phone_type]" value="2">work
+											<input type="radio" name="data[Phone][phone_type]" value="3">fax
+		</p>  
+    </fieldset>
+    <fieldset id="user_data"><legend>Informações de acesso ao painel do cliente</legend>
+	    <p><label>login: 		</label> <input type="text" name="data[User][login]" size="40"></p>  
+	    <p><label>password: 	</label> <input type="text" name="data[User][password]" size="40"></p>  
+    </fieldset>
+    
+    <fieldset id="domains_data"><legend>Domínios</legend>
+    <div class="domains">
+		<p><label>url: 	</label> <input class="clear" type="text" name="data[Domain][0][url]" id="data_domain_url" size="40"></p>
+		<p><label>login: 	</label> <input class="clear" type="text" name="data[Domain][0][login]" id="data_domain_login" size="40"></p>
+		<p><label>password: 	</label> <input class="clear" type="text" name="data[Domain][0][password]" id="data_domain_password" size="40"></p>
+		<p><label>plan_id: 	</label> <select name="data[Domain][0][plan_id]" id="data_domain_plan_id"><option value="1">plan 1</option><option value="2">plan 2</option></select></p>
+	</div>
+	<style>
+.added_domains p {
+margin:0px; padding:0px;
+}
+.added_domains div {
+
+}
+.added_domain {
+border:1px solid black; clear:both; margin:3px auto; padding:3px; width:80%;
+background:#FFEDED;clear:both;
+}
+.added_domain span {
+width:49%; float:left;
+}
+</style>
+	<input type="button" onclick="addDomain()" value="Adicionar dominio">
+	<div class="added_domains" style="clear:both">
+		<!--<div class="added_domain">
+			<div style="clear:both"></div>
+			<span><b>Url:</b> www.google.com</span>		<span><b>Url:</b> www.google.com</span>
+			<span><b>Login:</b> googleco </span>		<span><b>Password:</b> ***** </span>
+			<span>[editar]</span>						<span>[excluir]</span>
+			<div style="clear:both"></div>
+		</div>-->
+		
+	</div>
+	
+    </fieldset>
+	
+    <p>
+        <?php echo $html->submit('Cadastrar') ?>
+    </p>
+
+
+</form>
+</div>
+<? if(isset($posted)): ?>
+<pre>
+<? print_r($posted) ?>
+</pre>
+<? endif; ?>
+<? echo (preg_match("/\d+/", "oioioi")) ? "true":"false"; ?>
