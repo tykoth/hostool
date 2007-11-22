@@ -1,0 +1,160 @@
+<form method="POST" action="sign/next/" class="ajax" onsubmit="return false" >
+	<input type="hidden" name="data[Form]" value="domains_data">
+	<fieldset id="domains_data"><legend>Domínios</legend>
+	<div class="fieldset_tip">
+		<div class="msg">Informe os dados para registro de domínio e hospedagem</div>
+		<button class="close-button" onclick="$('.fieldset_tip').fadeOut(500);">X</button>
+		<div style="clear:both"></div>
+	</div>
+	<div style="clear:both"></div><Br>
+	    <div class="domains">
+	    
+
+				<label><? echo $lang['DOMAIN_URL']['label']; ?>:</label> 
+				<input class="clear" type="text" id="data_domain_url" size="30">				
+				<a title="<? echo $lang['DOMAIN_URL']['label']; ?> - <? echo $lang['DOMAIN_URL']['tip']; ?>" href="#">?</a>
+				<hr class="sep"/>
+
+			
+			
+			
+			
+			
+		
+			
+			
+			
+				<label><? echo $lang['DOMAIN_REGISTER']['label']; ?>:</label> 
+				<input class="clear" type="checkbox" id="data_domain_register">
+				<a title="<? echo $lang['DOMAIN_REGISTER']['label']; ?> - <? echo $lang['DOMAIN_REGISTER']['tip']; ?>" href="#">?</a>
+				<hr class="sep"/>
+			
+			
+			
+				<label><? echo $lang['DOMAIN_LOGIN']['label']; ?>:</label> 
+				<input class="clear" type="text" id="data_domain_login" size="10" maxlength="8">
+				<a title="<? echo $lang['DOMAIN_LOGIN']['label']; ?> - <? echo $lang['DOMAIN_LOGIN']['tip']; ?>" href="#">?</a>
+				<hr class="sep"/>
+			
+			
+			
+				<label><? echo $lang['DOMAIN_PASSWORD']['label']; ?>:</label> 
+				<input class="clear" type="text" name="data[Domain][0][password]" id="data_domain_password" size="10" maxlength="32">
+				<a title="<? echo $lang['DOMAIN_PASSWORD']['label']; ?> - <? echo $lang['DOMAIN_PASSWORD']['tip']; ?>" href="#">?</a>
+				<hr class="sep"/>
+			
+			
+			
+				<label><? echo $lang['DOMAIN_PLAN_ID']['label']; ?>:</label> 
+				<ul>
+					<? foreach($plans as $plan): $plan = $plan['Plans']; ?>
+					<li>
+						<input type="radio" name="data_domain_plan_id" value="<?=$plan['id']?>"><?=$plan['name']?> - R$<?= number_format($plan['cost'], 2, ",", ".")?>
+					</li>
+					<? endforeach; ?>					
+				</ul>
+				<a title="<? echo $lang['DOMAIN_PLAN_ID']['label']; ?> - <? echo $lang['DOMAIN_PLAN_ID']['tip']; ?>" href="#">?</a>
+				<hr class="sep"/>
+			
+			
+			
+				<label><? echo $lang['DOMAIN_PERIOD_ID']['label']; ?>:</label> 
+				<ul>
+					<? foreach($periods as $period): $period = $period['Periods']; ?>
+					<li>
+						<input type="radio" name="data_domain_period_id" value="<?=$period['id']?>"><?=$period['name']?>
+					</li>
+					<? endforeach; ?>
+				</ul>				
+				<a title="<? echo $lang['DOMAIN_PERIOD_ID']['label']; ?> - <? echo $lang['DOMAIN_PERIOD_ID']['tip']; ?>" href="#">?</a>
+				<hr class="sep"/>
+			
+			
+		</div>
+		<div style="text-align:center; clear:both;">
+			<button onclick="addDomain()" style="margin:0 auto;">Adicionar dominio</button>
+			<button onclick="$('form.ajax').ajaxSubmit(options)" style="float:right">Prosseguir &gt;</button>
+		</div>
+		
+		
+		<div class="added_domains" style="clear:both"></div>
+		
+	</fieldset>
+	<pre>
+	</pre>
+</form>
+
+
+<script>
+$("fieldset *").Tooltip({showURL:false,showBody:" - ", track:true});
+
+$("#data_domain_url").bind('blur', function(){
+	/* Evitar http:// no endereço */
+	if(this.value.match(/http:\/\//gi )) this.value = this.value.replace(/http:\/\//gi, "");
+	/* Evitar www. no endereço */
+	if(this.value.substr(0,4).match(/www\./gi )) this.value = this.value.replace(/www\./gi, "");
+	/* Criar um pré-login, baseado no endereço */
+	check_login(this.value.replace(/\./, "").substr(0,8), true);
+});
+
+$("#data_domain_register").click(function(){
+	/* debug */	flash_msg((this.checked == true) ? "Registrar, fazer whois e verificar se ja não está registrado!" : "Não registrar, não fazer whois", ".fieldset_tip");		/**/
+	if(this.checked == true) {
+		$.getJSON(baseURL + '/domain_whois/' + $("#data_domain_url").val(), function(data){
+			if(data.avaible)
+			{
+				flash_msg("Ok! Este domínio está disponível para registro", ".fieldset_tip", 1500);
+			}
+			else
+			{
+				flash_msg("Este domínio não está disponível para registro", ".fieldset_tip", {timeout:3000, out:1500});
+				fielderror("#data_domain_url");
+			}
+		});
+	}
+});
+
+$("input[@name=data_domain_plan_id], input[@name=data_domain_period_id]").click(function(){
+	alert(this.value);
+})
+
+function highligh_field(field)
+{
+	$(field).css()
+}
+
+function check_login(login, fromUrl, number)
+{
+	data_login = login.substr(0,8);
+	if(!isNaN(number))
+	{
+		substract = number.toString().length;
+		data_login = login.substr(0,(8-substract))+number;
+	}
+	else
+	{
+		number = 0;
+	}
+
+	
+	$.ajax({
+		url: baseURL + '/checklogin/',
+		cache: false,
+		dataType:"json",
+		type: "POST",
+		data: "data[login]=" + data_login,
+		success: function(data){
+			if(data.exists)
+			{
+				if(fromUrl) check_login(login, fromUrl, number+1);
+				else flash_msg("Este login ja existe", ".fieldset_tip");
+			}
+			else
+			{
+				if(fromUrl)
+				$("#data_domain_login").val(data_login);
+			}
+		}
+	});
+}
+</script>

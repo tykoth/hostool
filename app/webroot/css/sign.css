@@ -1,0 +1,162 @@
+/* Corpo completo */
+body {
+font-family:Verdana;
+font-size:12px;
+text-align:center;
+/*background:#D9E6F7;*/
+}
+
+
+/* Div central que sustenta todo o formulário */
+/*.form {
+diplay:block;
+width:550px;
+margin:0 auto;
+}*/
+
+
+/* Fieldsets que sustentam sessões separadas do formulário */
+fieldset {
+background:#ffffff;
+border:3px solid #B8D5E6;
+text-align:left;
+padding:5px;
+}
+/* Topo do fieldset */
+legend {
+/*border:3px solid #B8D5E6;*/
+background:#efcded;
+padding:5px;
+}
+
+button {
+background:#efcded;
+border:2px solid #A7B3E6;
+color:#00f;
+}
+/* @todo Devo arrumar isso, usar hr
+fieldset p, fieldset .likep {
+margin:1px;
+width:100%;
+clear:both;
+border-bottom:2px dotted #B8D5E6;
+padding:3px;
+margin-bottom:3px;
+} */
+fieldset .likep {
+margin:1px;
+width:100%;
+clear:both;
+
+padding:3px;
+margin-bottom:3px;
+}
+fieldset hr.sep {
+	border:0px; border-bottom:2px dotted #B8D5E6; clear: both;
+}
+fieldset label, fieldset .likep label {
+display:block;
+/*border:1px solid black;*/
+width:38%;
+height:20px;
+text-align:right;
+padding-right:5px;
+float:left;
+}
+fieldset p label small {
+border:1px solid black;
+clear:both;
+}
+fieldset ul {
+margin:0px; padding:0px; float:left; display:block; position:relative;
+}
+fieldset ul li {
+margin:0px; 
+padding:0px; 
+display:block; 
+
+fieldset .fields li {
+clear:both;
+height:50px;
+}
+
+list-style:none;
+/*border:1px solid black;*/
+}
+
+fieldset div.radiobutton {
+float:left;
+display:block;
+border:1px solid black;
+}
+
+pre {
+text-align:left;
+}
+
+
+
+.cakeSqlLog {
+background:#CDDECD; width:100%;
+}
+.cakeSqlLog tr, cakeSqlLog td {
+border:1px solid black;
+}
+
+.form {
+    /* position:absolute;
+     left: 50%; 
+     top: 50%; */
+     width: 500px; 
+     /*height: 100px;*/
+     /*margin-top: -250px; /* half of the height */
+     /*margin-left: -250px; /* half of the width */
+  /*   border: 1px solid #000;*/
+  /* background:#fff; */
+}
+
+
+.added_domains p {
+margin:0px; padding:0px;
+}
+.added_domains div {
+
+}
+.added_domain {
+border:1px solid black; clear:both; margin:3px auto; padding:3px; width:80%;
+background:#FCFDDE;clear:both;
+}
+.added_domain span {
+width:49%; float:left;
+}
+
+
+
+/**************************/
+.fieldset_tip {
+ padding:0px;
+ border:2px solid #EECDBF; 
+ background:#EEEEAF; 
+ /*clear:both; */
+}
+.fieldset_tip .msg {
+padding:10px; width:80%; float:left;
+
+}
+button.close-button {
+position:relative;
+}
+button.close-button {
+border:2px solid #CDCD00;
+background:#EDED00;
+font-weight:bold;
+font-size:10px;
+font-family:Verdana;
+padding:0px;
+float:right;
+width:20px; height:20px;
+text-align:center; line-height:20px;
+margin-right:10px;
+margin-top:10px;
+
+}
