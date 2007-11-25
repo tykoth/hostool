@@ -1,0 +1,11 @@
+<? if(!empty($signup_data)): ?>
+			<? foreach ($signup_data['Domain'] as $key => $domain): ?>
+				<div id="added_domain_<?=$key?>" class="added_domain added_item">
+				<button class="delete" onclick="delDomain(<?=$key?>)" style="float:right" title="Deletar - Clique aqui para deletar este dominio da sua lista"></button>
+				<button class="edit" onclick="editDomain(<?=$key?>)" style="float:right" title="Editar - Clique aqui para editar os dados deste dominio "></button>
+					<span>Dominio:</span> <?=$domain['url']?> (registrar dominio - <?=(isset($domain['register'])) ? "sim" : "não" ?>)<br>
+					<span>Plano:</span> <?=$plans[$domain['plan_id']]['name']?> (<?=$periods[$domain['period_id']]['name']?>)<Br>
+					<span>Login:</span> <?=$domain['login']?>
+				</div>
+	<? endforeach; ?>
+<? endif; ?>

@@ -1,0 +1,85 @@
+div.form {
+width:550px;
+margin:0 auto;
+}
+
+fieldset {
+width:550px;
+margin:0 0 10px 0;
+padding:10px;
+}
+
+fieldset p{
+clear: left;
+margin: 0;
+padding: 2px;
+padding-left: 205px; /* o mesmo tamanho da coluna da esquerda */
+height: 1%;
+}
+
+fieldset label{
+float: left;
+margin-left: -205px; /* o mesmo tamanho da coluna da esquerda */
+width: 196px; /* largura deve ser pelo menos 5 pixels inferior ao tamanho da coluna da esquerda*/
+}
+
+fieldset input[type="text"]{ /* width of text boxes. IE6 does not understand this attribute*/
+width: 180px;
+}
+
+fieldset textarea{
+width: 250px;
+height: 150px;
+}
+
+/*.threepxfix class below:
+Targets IE6- ONLY. Adds 3 pixel indent for multi-line form contents.
+to account for 3 pixel bug: http://www.positioniseverything.net/explorer/threepxtest.html
+*/
+
+* html .threepxfix{
+margin-left: 3px;
+}
+
+/* Itens adicionados */
+.added_domains {
+padding:5px;
+}
+
+.added_domain {
+padding:5px;
+margin-bottom:5px;
+}
+.added_domains .buttons {
+text-align:center;
+}
+/* Botões */
+button.back {
+	margin-left: -205px; /* o mesmo tamanho da coluna da esquerda */
+}
+button.back, button.middle {
+	float:left;
+}
+button.next {
+	float:right;
+}
+.fieldset_tip {
+padding:10px;
+margin-bottom:10px;
+}
+.fieldset_tip .msg {
+float:left;
+}
+.fieldset_tip .close {
+display:block;
+float:right;
+}
+
+.added_item {
+}
+
+.added_item span {
+display:block;
+float:left;
+width:70px;
+}
