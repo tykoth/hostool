@@ -1,0 +1,148 @@
+<form method="POST" action="" class="ajax">
+	<input type="hidden" name="data[Next]" value="payment_data">
+	<fieldset id="client_data"><legend>Dados Pessoais</legend>
+		<div class="fieldset_tip">
+			<div class="msg">
+				Informe os dados para registro de domínio e hospedagem<Br><Br><br><Br>
+			</div>
+			<button class="close" onclick=""></button>
+			<div style="clear:both"></div>
+		</div>
+
+	    <p>
+	    	<label><? echo $lang['CLIENT_NAME']['label']; ?>:</label> 
+	    	<input type="text" class="{required:true}" id="data_client_name" name="data[Client][name]" size="40">
+	    	<span class="help" title="<? echo $lang['CLIENT_NAME']['label']; ?> - <? echo $lang['CLIENT_NAME']['tip']; ?>"></span>	
+	    </p>
+	    <p>
+	    	<label><? echo $lang['CLIENT_SURNAME']['label']; ?>:</label>
+	    	<input type="text" class="{required:true}" id="data_client_surname" name="data[Client][surname]" size="40">
+	    	<span class="help" title="<? echo $lang['CLIENT_NAME']['label']; ?> - <? echo $lang['CLIENT_NAME']['tip']; ?>"></span>	
+	    </p>
+	    <p>
+	    	<label><? echo $lang['CLIENT_PREFERREDNAME']['label']; ?>:</label>
+	    	<input type="text" class="{required:true}" id="data_client_preferredname" name="data[Client][preferredname]" size="40">
+	    	<span class="help" title="<? echo $lang['CLIENT_NAME']['label']; ?> - <? echo $lang['CLIENT_NAME']['tip']; ?>"></span>	
+	    </p>
+	    <p>
+	    	<label><? echo $lang['CLIENT_BIRTHDATE']['label']; ?>:</label>
+	    	<input type="text" class="{required:true}" id="data_client_birthdate" name="data[Client][birthdate]" size="40">
+	    	<span class="help" title="<? echo $lang['CLIENT_NAME']['label']; ?> - <? echo $lang['CLIENT_NAME']['tip']; ?>"></span>	
+	    </p>
+	    <p>
+	    	<label><? echo $lang['CLIENT_GENDER']['label']; ?>:</label>
+	    	<input type="radio" name="data[Client][gender]" value="0">male<input type="radio" name="data[Client][gender]" value="1"> female
+	    	<span class="help" title="<? echo $lang['CLIENT_NAME']['label']; ?> - <? echo $lang['CLIENT_NAME']['tip']; ?>"></span>	
+	    </p>
+	    <p>
+	    	<label><? echo $lang['CLIENT_MARITALSTATUS']['label']; ?>:</label> 
+	    	<select name="data[Client][maritalstatus]">
+	    		<option selected="selected" value=""> - choose an option -</option>
+				<option value="1">single</option>
+				<option value="2">married</option>
+				<option value="3">committed</option>
+				<option value="4">open marriage</option>
+				<option value="5">open relationship</option>
+	    	</select>
+	    	<span class="help" title="<? echo $lang['CLIENT_NAME']['label']; ?> - <? echo $lang['CLIENT_NAME']['tip']; ?>"></span>	
+	    </p>
+	    <p>
+	    	<label>rg:				</label>
+	    	<input type="text" name="data[Client][rg]" size="40">
+	    	<span class="help" title="<? echo $lang['CLIENT_NAME']['label']; ?> - <? echo $lang['CLIENT_NAME']['tip']; ?>"></span>	
+	    </p>
+	    <p>
+	    	<label>cpf:				</label>
+	    	<input type="text" name="data[Client][cpf]" size="40">
+	    	<span class="help" title="<? echo $lang['CLIENT_NAME']['label']; ?> - <? echo $lang['CLIENT_NAME']['tip']; ?>"></span>	
+	    </p>
+	    <p>
+	    	<label>cnpj:				</label>
+	    	<input type="text" name="data[Client][cnpj]" size="40">
+	    	<span class="help" title="<? echo $lang['CLIENT_NAME']['label']; ?> - <? echo $lang['CLIENT_NAME']['tip']; ?>"></span>	
+	    </p>    
+	    <p>
+	    	<label>companyname:		</label>
+	    	<input type="text" name="data[Client][companyname]" size="40">
+	    	<span class="help" title="<? echo $lang['CLIENT_NAME']['label']; ?> - <? echo $lang['CLIENT_NAME']['tip']; ?>"></span>	
+	    </p>    
+
+	    
+	    
+	    
+	</fieldset>
+	
+	<fieldset id="address_data">
+		<legend>Dados de endereçamento</legend>
+		
+		<p>
+			<label>Endereço:</label>
+			<input type="text" size="40">
+			<span class="help" title="Ajuda - Ajudinha basica"></span>
+		</p>
+		
+		<p>
+			<label>Complemento:</label>
+			<input type="text" size="40">
+			<span class="help" title="Ajuda - Ajudinha basica"></span>
+		</p>
+		
+		<p>
+			<label>Bairro:</label>
+			<input type="text" size="40">
+			<span class="help" title="Ajuda - Ajudinha basica"></span>
+		</p>
+		
+		<p>
+			<label>CEP:</label>
+			<input type="text" size="40">
+			<span class="help" title="Ajuda - Ajudinha basica"></span>
+		</p>
+		
+		<p>
+			<label>Cidade:</label>
+			<input type="text" size="40">
+			<span class="help" title="Ajuda - Ajudinha basica"></span>
+		</p>
+		
+		<p>
+			<label>Estado:</label>
+			<input type="text" size="40">
+			<span class="help" title="Ajuda - Ajudinha basica"></span>
+		</p>
+		
+		<p>
+			<label>País:</label>
+			<input type="text" size="40">
+			<span class="help" title="Ajuda - Ajudinha basica"></span>
+		</p>
+	
+		<p>
+			<button class="back" disabled="true">&lt; Retornar</button>
+			<button class="middle">Adicionar dominio</button>
+			<button class="next">Dados pessoais &gt;</button>
+		</p>
+	</fieldset>
+	
+	
+</form>	    
+
+
+<script type="text/javascript">
+
+/* Botões */
+$("button.middle").click(function(){
+	add_domain();
+	return false;
+});
+
+$("button.next").click(function(){
+	$('form.ajax').ajaxSubmit(options);
+	return false;
+})
+
+$("button.close").click(function(){
+	$('.fieldset_tip').fadeOut(500);
+})
+
+</script>

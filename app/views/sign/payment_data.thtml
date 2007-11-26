@@ -1,0 +1,245 @@
+<form method="POST" action="" class="ajax">
+	<input type="hidden" name="data[Next]" value="client_data">
+	<fieldset id="domains_data"><legend>Domínios</legend>
+		<div class="fieldset_tip">
+			<div class="msg">
+				Informe os dados para registro de domínio e hospedagem
+			</div>
+			<button class="close" onclick=""></button>
+			<div style="clear:both"></div>
+		</div>
+	
+		<p>
+			<label for="data_domain_url"><? echo $lang['DOMAIN_URL']['label']; ?>:</label> 
+			<input name="data[Domain][url]" class="{required:true}" type="text" id="data_domain_url" size="30">	
+			<span class="help" title="<? echo $lang['DOMAIN_URL']['label']; ?> - <? echo $lang['DOMAIN_URL']['tip']; ?>"></span>			
+		</p>
+		
+		<p>
+			<label for="data_domain_register"><? echo $lang['DOMAIN_REGISTER']['label']; ?>:</label> 
+			<input name="data[Domain][register]" class="clear" type="checkbox" id="data_domain_register">
+			<span class="help" title="<? echo $lang['DOMAIN_REGISTER']['label']; ?> - <? echo $lang['DOMAIN_REGISTER']['tip']; ?>" href="#"></span>
+		</p>
+		
+		<p><span class="help" title="<? echo $lang['DOMAIN_LOGIN']['label']; ?> - <? echo $lang['DOMAIN_LOGIN']['tip']; ?>" href="#"></span>
+			<label for="data_domain_login"><? echo $lang['DOMAIN_LOGIN']['label']; ?>:</label> 
+			<input name="data[Domain][login]"type="text" id="data_domain_login" size="10" maxlength="8" class="{required:true,minLength:4}" >
+			
+		</p>
+		
+		<p>
+			<label for="data_domain_password"><? echo $lang['DOMAIN_PASSWORD']['label']; ?>:</label> 
+			<input name="data[Domain][password]" class="{required:true}" type="password" id="data_domain_password" size="10" maxlength="32">
+			<span class="help" title="<? echo $lang['DOMAIN_PASSWORD']['label']; ?> - <? echo $lang['DOMAIN_PASSWORD']['tip']; ?>" href="#"></span>
+		</p>
+		<p>
+			<label for="data_domain_password_repeat"><? echo $lang['DOMAIN_PASSWORD_REPEAT']['label']; ?>:</label> 
+			<input name="data_domain_password_repeat" class="{required:true, equalTo: '#data_domain_password'}" type="password" id="data_domain_password_repeat" size="10" maxlength="32">
+			<span class="help" title="<? echo $lang['DOMAIN_PASSWORD_REPEAT']['label']; ?> - <? echo $lang['DOMAIN_PASSWORD_REPEAT']['tip']; ?>" href="#"></span>
+		</p>
+		
+		<p>
+			<label><? echo $lang['DOMAIN_PLAN_ID']['label']; ?>:</label> 
+			<? foreach($plans as $id => $plan): //$plan = $plan['Plans']; ?>
+				<input type="radio" <? if(first($plans) == $id): ?>checked="checked"<? endif;?> class="data_domain_plan_id" name="data[Domain][plan_id]" id="data_domain_plan_<?=$id?>" value="<?=$plan['id']?>"><?=$plan['name']?> - R$<?= number_format($plan['cost'], 2, ",", ".")?><br/>
+			<? endforeach; ?>
+			<span class="help" title="<? echo $lang['DOMAIN_PLAN_ID']['label']; ?> - <? echo $lang['DOMAIN_PLAN_ID']['tip']; ?>" href="#"></span>
+		</p>
+		
+		<p>
+			<label><? echo $lang['DOMAIN_PERIOD_ID']['label']; ?>:</label>
+			
+			<? foreach($periods as $id => $period): //$period = $period['Periods']; ?>
+				<input type="radio" <? if(first($periods) == $id): ?>checked="checked"<? endif;?> class="data_domain_period_id" name="data[Domain][period_id]" value="<?=$period['id']?>"><?=$period['name']?><br/>
+			<? endforeach; ?>	
+			<span class="help" title="<? echo $lang['DOMAIN_PERIOD_ID']['label']; ?> - <? echo $lang['DOMAIN_PERIOD_ID']['tip']; ?>" href="#"></span>
+		</p>
+			
+
+		<p>
+			<button class="back">&lt; Retornar</button>
+			<button class="middle">Adicionar dominio</button>
+			<button class="next">Dados pessoais &gt;</button>
+		</p>
+		
+		
+		
+		<div class="added_domains" style="clear:both">
+		<? if(!empty($signup_data)): ?>
+			<? foreach ($signup_data['Domain'] as $key => $domain): ?>
+				<div id="added_domain_0" class="added_domain added_item">
+				<button class="delete" onclick="delDomain(0)" style="float:right" title="Deletar - Clique aqui para deletar este dominio da sua lista"></button>
+				<button class="edit" onclick="editDomain(0)" style="float:right" title="Editar - Clique aqui para editar os dados deste dominio "></button>
+					<span>Dominio:</span> <?=$domain['url']?> (registrar dominio - <?=(isset($domain['register'])) ? "sim" : "não" ?>)<br>
+					<span>Plano:</span> <?=$plans[$domain['plan_id']]['name']?> (<?=$periods[$domain['period_id']]['name']?>)<Br>
+					<span>Login:</span> <?=$domain['login']?>
+				</div>
+			<? endforeach; ?>
+		<? endif; ?>
+		
+		
+		
+	</fieldset>
+</form>
+
+
+<script>
+
+/**
+* dEBUGG
+*/
+//$("#data_domain_url").val("tykoth.com"); $("#data_domain_login").val("tykothco"); $("#data_domain_password").val("password");
+
+var validation_options = {
+	 messages: {
+	 	"data[Domain][url]" : {
+	 		"required":"Você deve informar um url para seu domínio"
+	 	},
+	 	"data[Domain][login]" : {
+	 		"required":"Você deve informar um login para seu domínio"
+	 	},
+	 	"data[Domain][password]": {
+	 		"required": "É necessario uma senha"
+	 	},
+		"data_domain_password_repeat": {
+			"required": "É necessario repetir a senha",
+			"equalTo": "Sua senha deve ser igual a inserida no campo anterior"
+		}
+	}
+}
+var validator = $("form.ajax").validate(validation_options);
+
+/* Carregar tooltip */
+$("fieldset *").Tooltip({showURL:false,showBody:" - ", track:true});
+
+/* Input Styles */
+$("input[@type=text], input[@type=password], input[@type=file]").addClass("text");
+
+/* Botões */
+$("button.middle").click(function(){
+	add_domain();
+	return false;
+});
+
+$("button.next").click(function(){
+	if(!added_domains.length && confirm('Deseja prosseguir sem adicionar um domínio?'))	$('form.ajax').ajaxSubmit(options);
+	return false;
+})
+
+$("button.close").click(function(){
+	$('.fieldset_tip').fadeOut(500);
+})
+/* Teste com validator */
+
+
+
+
+
+
+
+
+
+
+
+
+$("#data_domain_url").bind('blur', function(){
+	/* Evitar http:// no endereço */
+	if(this.value.match(/http:\/\//gi )) this.value = this.value.replace(/http:\/\//gi, "");
+	/* Evitar www. no endereço */
+	if(this.value.substr(0,4).match(/www\./gi )) this.value = this.value.replace(/www\./gi, "");
+
+	if($("#data_domain_register:checked").val() == "on")
+	{
+		domain_whois(this.value);
+	}
+	/* Criar um pré-login, baseado no endereço, caso não esteja preenchido */
+	if($("#data_domain_login").val() == "")
+	{
+		check_login(this.value.replace(/\./, "").substr(0,8), true);
+	}
+
+});
+//
+function domain_whois(domain)
+{
+	$.getJSON(baseURL + '/domain_whois/' + domain, function(data){
+		if(data.avaible)
+		{
+			flash_msg("Ok! Este domínio está disponível para registro", ".fieldset_tip", 1500);
+		}
+		else
+		{
+			flash_msg("Este domínio não está disponível para registro", ".fieldset_tip", {timeout:3000, out:1500});
+			fielderror("#data_domain_url");
+		}
+	});
+}
+$("#data_domain_register").click(function(){
+	/* debug */	flash_msg((this.checked == true) ? "Registrar, fazer whois e verificar se ja não está registrado!" : "Não registrar, não fazer whois", ".fieldset_tip");		/**/
+	if(this.checked == true && $("#data_domain_url").val().length > 0) {
+		domain_whois($("#data_domain_url").val())
+	}
+});
+//
+//$("input.data_domain_plan_id:first, input.data_domain_period_id:first").attr({checked:true});
+//
+////$("input[@name=data_domain_plan_id], input[@name=data_domain_period_id]").click(function(){
+////	alert(this.value);
+////});
+//
+//$("input[@name=data_domain_plan_id]").click(function(){
+//
+//})
+//
+//function highligh_field(field)
+//{
+//	$(field).css()
+//}
+//
+function check_login(login, fromUrl, number)
+{
+	data_login = login.substr(0,8);
+	if(!isNaN(number))
+	{
+		substract = number.toString().length;
+		data_login = login.substr(0,(8-substract))+number;
+	}
+	else
+	{
+		number = 0;
+	}
+
+
+	$.ajax({
+		url: baseURL + '/checklogin/',
+		cache: false,
+		dataType:"json",
+		type: "POST",
+		data: "data[login]=" + data_login,
+		success: function(data){
+			if(data.exists)
+			{
+				if(fromUrl) check_login(login, fromUrl, number+1);
+				else flash_msg("Este login ja existe", ".fieldset_tip");
+			}
+			else
+			{
+				if(fromUrl)
+				$("#data_domain_login").val(data_login);
+			}
+		}
+	});
+}
+
+
+
+var added_domains = [];
+var added_logins = [];
+<? if(!empty($signup_data)): ?>
+<? foreach ($signup_data['Domain'] as $key => $domain): ?>
+array_push('<?=$domain['url']?>', added_domains);
+array_push('<?=$domain['login']?>', added_logins);
+<? endforeach; ?>
+<? endif;?>
+</script>
+

@@ -1,0 +1,108 @@
+body {
+font-family:Verdana,Arial,Helvetica,sans-serif;
+font-size:12px;
+}
+
+fieldset {
+background:url(../img/skins/blue-water/form-bg.jpg) repeat-x center bottom;
+border:1px solid #CCCCCC;
+}
+
+fieldset legend {
+color:#EE6200;
+font-size:12px;
+font-weight:bold;
+padding:3px;
+border:1px solid #CCCCCC;
+display:block;
+padding:5px 30px 5px 10px;
+}
+
+fieldset input.text {
+border:1px solid #CCCCCC;
+}
+
+fieldset label {
+font-size:12px;
+font-weight:bold;
+text-align:right;
+/*background:#C2E9E9;*/
+padding:3px;
+/*border:1px solid black;*/
+}
+
+fieldset p {
+/*background:#C2E9E9;*/
+border-top:1px dashed gray;
+margin-top:2px;
+}
+
+
+
+.help {
+background:url(../img/icons/help-blue.gif);
+display:block; width:17px; height:17px;
+/*position:relative; top:-1.2em; margin-left:300px;*/
+float:right;
+}
+
+label.error {
+background:none;
+border:none;
+font-weight:normal;
+font-style:italic;
+margin:0px;
+text-align:left;
+color:#FF0000;
+}
+
+input.error {
+border:1px solid red;
+}
+
+button {
+border:1px solid #CCCCCC;
+height:18px;
+background:url(../img/skins/blue-water/button-bg.jpg) repeat-x bottom;
+font-weight:bold;
+font-size:12px;
+}
+
+.delete, .edit {
+height:18px;
+width:18px;
+margin:0px;
+border:0px;
+}
+.delete {
+background:url(../img/skins/blue-water/icons/delete.gif) no-repeat bottom;
+}
+.edit {
+background:url(../img/skins/blue-water/icons/edit.gif) no-repeat bottom;
+}
+.added_item {
+font-size:10px;
+border:1px solid green;
+background:#FCFDDE;
+}
+
+.added_item span {
+font-weight:bold;
+}
+
+.fieldset_tip {
+border:1px solid #CDE3CD;
+}
+.fieldset_tip .msg {
+color:#FF0000;
+}
+.fieldset_tip .close {
+background:url(../img/skins/blue-water/icons/close.gif) no-repeat center bottom;
+border:0px;
+width:18px;
+height:18px;
+text-align:center;
+font-size:10px;
+padding:0px;
+color:blue;
+}

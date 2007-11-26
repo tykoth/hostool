@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Hostool - Formul&aacute;rio de assinatura</title>
+<? //= $html->css("sign"); ?>
+<?= $html->css("sign.wire"); ?>
+<?= $html->css("sign.skin"); ?>
+
+<?= $javascript->link("jquery.core") 	/* jQuery Core */?>
+<?= $javascript->link("jquery.form") ?>
+<?= $javascript->link("jquery.validator") ?>
+<?= $javascript->link("jquery.metadata") ?>
+
+<?= $javascript->link("jquery.tooltip") ?>
+<?= $javascript->link("jquery.bgiframe") ?>
+<?= $javascript->link("jquery.dimensions") ?>
+
+
+<?= $javascript->link("jquery.commons")	/* Funções nativas do sistema */ ?>
+
+<!--script src="jquery.bgiframe.js" type="text/javascript"></script>
+<script src="jquery.dimensions.js" type="text/javascript"></script>
+<script src="chili-1.7.pack.js" type="text/javascript"></script>
+<script src="jquery.tooltip.js" type="text/javascript"></script-->
+
+<script type="text/javascript"> var baseURL = '<?= $html->url(""); ?>';</script>
+<style type="text/css">
+/*** Tooltip ***/
+/** custom **/
+#tooltip{
+	position: absolute;
+	z-index: 3000;
+	opacity: 0.90;
+	width:200px;
+	background:#fff  url(http://tbweb.servegame.com:8080/hostool/img/skins/blue-water/help-bg.jpg) repeat-x top;
+	border:2px dotted #8ab9f2;
+	
+	text-align:left;
+}
+
+#tooltip h3{
+margin:0px 5px 0px 2px;
+font-size:10px;
+border-bottom:1px dotted #000;
+/*background:#9bc9fb url(http://tbweb.servegame.com:8080/hostool/img/skins/blue-water/button-bg.jpg) repeat-x top;*/
+padding:0px;
+}
+
+#tooltip div.body {
+font-size:9px;
+padding:2px;
+border:0px solid #d8ffff;
+}
+#tooltip div.url {
+
+}
+/** default **
+#tooltip {
+	position: absolute;
+	z-index: 3000;
+	border: 1px solid #111;
+	background-color: #eee;
+	padding: 5px;
+	opacity: 0.85;
+}
+#tooltip h3 {
+	font-family: Verdana;
+	font-size:12px;
+}
+#tooltip h3, #tooltip div { margin: 0; }
+
+#tooltip.pretty {
+	font-family: Arial;
+	border: none;
+	width: 210px;
+	padding:20px;
+	height: 135px;
+	opacity: 0.8;
+	background: url('shadow.png');
+}
+#tooltip.pretty h3 {
+	margin-bottom: 0.75em;
+	font-size: 5px;
+	color:#f00;
+	width: 220px;
+	text-align: center;
+}
+#tooltip.pretty div { width: 220px; text-align: left; }
+
+#tooltip.fancy {
+	background: url('shadow2.png');
+	padding-top: 5em;
+	height: 100px;
+}
+/**/
+
+</style>
+</head>
+
+<body>
+<div class="form"><?= $content_for_layout ?></div>
+<script type="text/javascript">
+/* <![CDATA[ */ 
+var options = {
+	url: baseURL + '/next/',
+//	target:'div.form',
+	beforeSubmit:function(){
+		
+		$("div.form").fadeOut('slow');
+	},
+	success:function(data){
+		//							alert("after");
+		$('div.form').html(data);
+		$('div.form').fadeIn('slow');
+		//$('form').ajaxForm(options);
+	}
+};
+
+$.ajax({
+	url: baseURL + '/next/',
+	type: "GET",
+	cache: false,
+	dataType: "html",
+	success: function(html){
+		$("div.form").html(html);
+	}
+});
+/* ]]> */ 
+</script>
+
+
+</body>
+</html>
