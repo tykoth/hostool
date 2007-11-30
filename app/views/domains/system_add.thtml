@@ -1,0 +1,52 @@
+<h1>Adicionar novo Domínio</h1>
+
+<fieldset>
+	<legend>Dominio</legend>
+	<div class="ui-tabs-container">
+		<ul class="ui-tabs-nav">
+	        <li><a href="#fragment-1"><span>Domínio</span></a></li>
+	        <li><a href="#fragment-2"><span>Financeiro</span></a></li>
+	        <li><a href="#fragment-3"><span>Outros</span></a></li>
+	    </ul>
+	    <div id="fragment-1" class="ui-tabs-panel">
+			<p>
+				<label for="data[Domain][client_id]">Cliente:</label>
+				<select name="data[Domain][client_id]">
+					<option value="1">Nome do cliente</option>
+					<option value="1">Nome do cliente</option>
+					<option value="1">Nome do cliente</option>
+					<option value="1">Nome do cliente</option>
+				</select>
+			</p>
+	
+			<p>
+				<label for="data[Domain][url]">Domínio:</label>
+				<input type="text" name="data[Domain][url]"/>
+			</p>
+	
+			<p>
+				<label for="data[Domain][login]">Usuário:</label>
+				<input type="text" name="data[Domain][login]"/>
+			</p>
+	
+			<p>
+				<label for="data[Domain][password]">Senha:</label>
+				<input type="text" name="data[Domain][password]"/>
+			</p>
+	
+			<p>
+				<label for="data[Domain][password_confirm]">Confirmar senha:</label>
+				<input type="text" name="data[Domain][password_confirm]"/>
+			</p>
+	    </div>
+	    <div id="fragment-2" class="ui-tabs-panel">
+
+	    </div>
+	    <div id="fragment-3" class="ui-tabs-panel">
+
+	    </div>
+    </div>
+</fieldset>
+
+
+<script>$(".ui-tabs-container ul").tabs(System.tabs);</script>
