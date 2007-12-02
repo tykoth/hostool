@@ -1,0 +1,88 @@
+<?php
+/* SVN FILE: $Id: bootstrap.php 4409 2007-02-02 13:20:59Z phpnut $ */
+/**
+ * Short description for file.
+ *
+ * Long description for file
+ *
+ * PHP versions 4 and 5
+ *
+ * CakePHP(tm) :  Rapid Development Framework <http://www.cakephp.org/>
+ * Copyright 2005-2007, Cake Software Foundation, Inc.
+ *								1785 E. Sahara Avenue, Suite 490-204
+ *								Las Vegas, Nevada 89104
+ *
+ * Licensed under The MIT License
+ * Redistributions of files must retain the above copyright notice.
+ *
+ * @filesource
+ * @copyright		Copyright 2005-2007, Cake Software Foundation, Inc.
+ * @link				http://www.cakefoundation.org/projects/info/cakephp CakePHP(tm) Project
+ * @package			cake
+ * @subpackage		cake.app.config
+ * @since			CakePHP(tm) v 0.10.8.2117
+ * @version			$Revision: 4409 $
+ * @modifiedby		$LastChangedBy: phpnut $
+ * @lastmodified	$Date: 2007-02-02 07:20:59 -0600 (Fri, 02 Feb 2007) $
+ * @license			http://www.opensource.org/licenses/mit-license.php The MIT License
+ */
+/**
+ *
+ * This file is loaded automatically by the app/webroot/index.php file after the core bootstrap.php is loaded
+ * This is an application wide file to load any function that is not used within a class define.
+ * You can also use this to include or require any files in your application.
+ *
+ */
+/**
+ * The settings below can be used to set additional paths to models, views and controllers.
+ * This is related to Ticket #470 (https://trac.cakephp.org/ticket/470)
+ *
+ * $modelPaths = array('full path to models', 'second full path to models', 'etc...');
+ * $viewPaths = array('this path to views', 'second full path to views', 'etc...');
+ * $controllerPaths = array('this path to controllers', 'second full path to controllers', 'etc...');
+ *
+ */
+
+/**
+ * We define CAKE_ADMIN differently for the different usertypes we 
+ * want to support, acting on the currently called URL to decide
+ * which we tell Cake about.
+ */
+function admin_routes($subdirs)
+{
+	$firstSlash = strpos($_GET['url'],'/');
+	$firstSubdir = substr($_GET['url'], 0, $firstSlash);
+
+	if(in_array($firstSubdir, $subdirs))
+	{
+		//    	die($firstSubdir);
+		define('CAKE_ADMIN', $firstSubdir);
+	}
+}
+
+
+admin_routes(array(
+'admin',
+'client',
+'system'
+));
+
+
+
+
+
+function first(&$array) {
+	if (!is_array($array)) return null;
+	if (!count($array)) return null;
+	reset($array);
+	return key($array);
+}
+
+function datetosql($data)
+{
+	if(!strpos($data, "/")) return $data;
+	list($d, $m, $Y) = explode("/", $data);
+	return "{$Y}-{$m}-{$d}";
+}
+//EOF
+?>

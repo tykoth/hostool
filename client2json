@@ -1,0 +1,23 @@
+client = {
+	name:"Thiago",
+	surrname:"Bocchile",
+	preferredname:"Tykoth",
+	addresses: [
+		{
+			street:"Rua Capitão João Salermo"
+		},
+		{
+			street:"Rua Republica do Peru"
+		}	
+	],
+	emails: ["tykoth@gmail.com", "thicoffe@gmail.com"],
+	phones: ["2138-4548", "3261-2767"],
+	domains: [
+		{
+			url:"www.w2y.org"
+		},
+		{
+			url:"www.orkutools.com"
+		}
+	]
+}

@@ -1,0 +1,297 @@
+<h1>Adicionar novo Cliente</h1>
+<form action="" method="POST" class="ajax">
+<fieldset>
+	<legend>Adicionar cliente</legend>
+	<div class="ui-tabs-container">
+		<ul class="ui-tabs-nav">
+	        <li><a href="#fragment-1"><span>Dados Pessoais</span></a></li>
+	        <li><a href="#fragment-2"><span>Endereçamento</span></a></li>
+	        <li><a href="#fragment-3"><span>Contatos</span></a></li>
+	    </ul>
+	    
+	    <div id="fragment-1" class="ui-tabs-panel">
+		    <p>
+		    	<label>Nome:</label> 
+		    	<input class="{required:true}" id="data_client_name" name="data[Client][name]" size="40" type="text">
+		    	<span class="help" title="Nome - Insira seu nome"></span>	
+		    </p>
+		    <p>
+		    	<label>Sobrenome:</label>
+		    	<input class="{required:true}" id="data_client_surname" name="data[Client][surname]" size="40" type="text">
+	
+		    	<span class="help" title="Nome - Insira seu nome"></span>	
+		    </p>
+		    <p>
+		    	<label>Nome de preferência:</label>
+		    	<input class="{required:true}" id="data_client_preferredname" name="data[Client][preferredname]" size="40" type="text">
+		    	<span class="help" title="Nome - Insira seu nome"></span>	
+		    </p>
+		    <p>
+		    	<label>Data de nascimento:</label>
+	
+		    	<input class="{required:true}" id="data_client_birthdate" name="data[Client][birthdate]" size="40" type="text">
+		    	<span class="help" title="Nome - Insira seu nome"></span>	
+		    </p>
+		    <p>
+		    	<label>Sexo:</label>
+		    	<input name="data[Client][gender]" value="0" type="radio">male<input name="data[Client][gender]" value="1" type="radio"> female
+		    	<span class="help" title="Nome - Insira seu nome"></span>	
+		    </p>
+		    <p>
+	
+		    	<label>Estado civil:</label> 
+		    	<select name="data[Client][maritalstatus]">
+		    		<option selected="selected" value=""> - choose an option -</option>
+					<option value="1">single</option>
+					<option value="2">married</option>
+					<option value="3">committed</option>
+	
+					<option value="4">open marriage</option>
+					<option value="5">open relationship</option>
+		    	</select>
+		    	<span class="help" title="Nome - Insira seu nome"></span>	
+		    </p>
+		    <p>
+		    	<label>rg:				</label>
+		    	<input name="data[Client][rg]" size="40" type="text">
+	
+		    	<span class="help" title="Nome - Insira seu nome"></span>	
+		    </p>
+		    <p>
+		    	<label>cpf:				</label>
+		    	<input name="data[Client][cpf]" size="40" type="text">
+		    	<span class="help" title="Nome - Insira seu nome"></span>	
+		    </p>
+		    <p>
+		    	<label>cnpj:				</label>
+	
+		    	<input name="data[Client][cnpj]" size="40" type="text">
+		    	<span class="help" title="Nome - Insira seu nome"></span>	
+		    </p>    
+		    <p>
+		    	<label>companyname:		</label>
+		    	<input name="data[Client][companyname]" size="40" type="text">
+		    	<span class="help" title="Nome - Insira seu nome"></span>	
+		    </p>  	    	
+	    </div>
+	    
+	    <div id="fragment-2" class="ui-tabs-panel">
+	    
+			
+			<p>
+				<label>Tipo:</label>
+				<input name="data[Adress][type]" type="radio"> Residencial
+				<input name="data[Adress][type]" type="radio"> Comercial
+				<span class="help" title="Ajuda - Ajudinha basica"></span>
+			</p>	
+			
+			<p>
+				<label>Endereço:</label>
+				<input name="data[Adress][address]" type="text" size="40">
+				<span class="help" title="Ajuda - Ajudinha basica"></span>
+			</p>
+			
+			<p>
+				<label>Complemento:</label>
+				<input name="data[Adress][address_c]" type="text" size="40">
+				<span class="help" title="Ajuda - Ajudinha basica"></span>
+			</p>
+			
+			<p>
+				<label>Bairro:</label>
+				<input name="data[Adress][neighborhood]" type="text" size="40">
+				<span class="help" title="Ajuda - Ajudinha basica"></span>
+			</p>
+			
+			<p>
+				<label>CEP:</label>
+				<input name="data[Adress][zipcode]" type="text" size="40">
+				<span class="help" title="Ajuda - Ajudinha basica"></span>
+			</p>
+			
+			<p>
+				<label>Cidade:</label>
+				<input name="data[Adress][city]" type="text" size="40">
+				<span class="help" title="Ajuda - Ajudinha basica"></span>
+			</p>
+			
+			<p>
+				<label>Estado:</label>
+				<input name="data[Adress][state]" type="text" size="40">
+				<span class="help" title="Ajuda - Ajudinha basica"></span>
+			</p>
+			
+			<p>
+				<label>País:</label>
+				<input name="data[Adress][country]" type="text" size="40">
+				<span class="help" title="Ajuda - Ajudinha basica"></span>
+			</p>	    
+	    </div>
+	    <div id="fragment-3" class="ui-tabs-panel">
+	    <fieldset>
+	    	<legend>E-Mails</legend>
+	    	<p>
+				<label>Numero:</label>
+				<input name="data[Phone][phone]" type="text" size="40">
+				<span class="help" title="Ajuda - Ajudinha basica"></span>
+			</p>
+	    	<p>
+				<label>Tipo:</label>
+				<input name="data[Phone][type]" type="radio"> Residencial
+				<input name="data[Phone][type]" type="radio"> Comercial
+				<input name="data[Phone][type]" type="radio"> Celular / Móvel
+				<input name="data[Phone][type]" type="radio"> Fax
+				<span class="help" title="Ajuda - Ajudinha basica"></span>
+			</p>
+<style>
+.added_itens {
+clear:both;
+padding:5px;
+}
+.added_itens div {
+border:1px solid black;
+margin:2px;
+padding:5px;
+clear:both;
+}
+.added_itens span {
+clear:both;
+padding-left:15px;
+font-weight:bold;
+}
+.added_itens .data {
+border:none;
+margin:0px;
+padding:0px;
+font-weight:normal;
+}
+button.up, button.down {
+float:left;
+width:15px;
+height:15px;
+margin:0px;
+}
+button.up {background:url(img/skins/system/icons/up.png) center center no-repeat;}
+button.down {background:url(img/skins/system/icons/down.png) center center no-repeat;}
+</style>
+			<div class="added_itens">
+				<div>
+					<button class="up"></button><button class="down"></button> 
+					<span class="data">
+						<span>Telefone:</span> +55 11 555-0000 (residencial) <input type="text" value="0"/>
+					</span>
+				</div>
+				<div>
+					<button class="up"></button><button class="down"></button> 
+					<span class="data">
+						<span>Telefone:</span> +55 11 555-0001 (residencial) <input type="text" value="1"/>
+					</span>
+				</div>
+				<div>
+					<button class="up"></button><button class="down"></button> 
+					<span class="data">
+						<span>Telefone:</span> +55 11 555-0002 (residencial) <input type="text" value="2"/>
+					</span>
+				</div>
+				<div>
+					<button class="up"></button><button class="down"></button> 
+					<span class="data">
+						<span>Telefone:</span> +55 11 555-0003 (residencial) <input type="text" value="3"/>
+					</span>
+				</div>
+			</div>
+	    </fieldset>
+
+	    <fieldset>
+	    	<legend>Telefones</legend>
+	    	<p>
+				<label>Numero:</label>
+				<input name="data[Phone][phone]" type="text" size="40">
+				<span class="help" title="Ajuda - Ajudinha basica"></span>
+			</p>
+	    	<p>
+				<label>Tipo:</label>
+				<input name="data[Phone][type]" type="radio"> Residencial
+				<input name="data[Phone][type]" type="radio"> Comercial
+				<input name="data[Phone][type]" type="radio"> Celular / Móvel
+				<input name="data[Phone][type]" type="radio"> Fax
+				<span class="help" title="Ajuda - Ajudinha basica"></span>
+			</p>
+	    </fieldset>
+	    	
+	    
+	    </div>
+	    
+	    
+	</div>
+	
+	<div style="text-align:center;padding-top:5px" class="buttons">
+		<button class="add">Adicionar Cliente</button>
+		<button class="enable">Habilitar/Desabilitar Botão ao lado</button>
+	</div>
+</fieldset>
+</form>
+<script type="text/javascript">
+$(".ui-tabs-container ul").tabs(System.tabs);
+
+//$("button.add").disable();
+var options = {
+	url: System.url + 'clients/add/?layout=ajax',
+//	target:'div.form',
+	beforeSubmit:function(){		
+//		$("div.form").fadeOut('slow');
+	},
+	success:function(data){
+		//							alert("after");
+//		$('div.form').html(data);
+//		$('div.form').fadeIn('slow');
+		//$('form').ajaxForm(options);
+	}
+};
+
+$("button.add").click(function(){
+//	alert("Opa!");
+	$('form.ajax').ajaxSubmit(options);
+	return false;
+})
+$("button.enable").toggle(
+	function(){$("button.add").enable();},
+	function(){$("button.add").disable();}
+)
+
+$("button.up, button.down").click(function(){
+	var actual = $(this).parent();
+	var upper = actual.prev();
+	var lower = actual.next();
+	var direction = this.className;
+	if(direction == "up")
+	{
+		var html_toup = actual.find(".data").html();
+		var html_todown = upper.find(".data").html();
+		
+		upper.find(".data").html(html_toup);
+		actual.find(".data").html(html_todown);
+	} 
+	else if(direction == "down")
+	{
+		var html_toup = lower.find(".data").html();
+		var html_todown = actual.find(".data").html();
+		
+		actual.find(".data").html(html_toup);
+		lower.find(".data").html(html_todown);
+	}
+	
+	
+	return false;
+});
+
+//$("button.down").click(function(){
+//	$actual = $(this).parent();
+//	$upper = $actual.prev();
+//	$lower = $actual.next();
+//	alert($lower.html());
+//	
+//	
+//	return false;
+//});
+</script>
