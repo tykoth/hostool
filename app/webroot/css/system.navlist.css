@@ -1,0 +1,77 @@
+.navlist {
+/**/background:#FCFCFC;;/**/
+margin:0 0 0 20px;
+padding:0px;
+text-indent:0px;
+width: 206px;
+float:left;
+}
+
+.navlist li {
+/*display:inline;*/
+list-style:none;
+/**margin:0 0 0 40px;/**/
+padding-left:20px;
+/*border-left:1px solid #e3dce5;*/
+}
+
+
+
+.navlist ul {
+border-width:0px;
+/**margin:0 0 0 40px;/**/
+/**/margin:0;/**/
+padding:0px;
+text-indent:0px;
+}
+.navlist a{
+color:#79859c;
+font-weight:bold;
+}
+
+.navlist a:hover{
+color:#FF9900;
+}
+
+.navlist .top {
+display:block;
+background:#FCFCFC url(http://tbweb.servegame.com:8080/hostool/img/skins/system/menu-top.gif) no-repeat left;
+padding-left:40px;
+height:28px;
+}
+
+.navlist .fasts {
+background:#FCFCFC url(http://tbweb.servegame.com:8080/hostool/img/skins/system/menu-left.gif) no-repeat top left;
+height:79px;
+border:none;
+}
+/*
+.navlist .fasts li {
+border:none;
+padding:0px;
+margin:0px;
+line-height:auto;
+}*/
+
+.navlist li ul li {
+padding:0px;
+margin:0px;
+/*line-height:none;*/
+/**/border:1px solid #fff;/**/
+}
+
+.navlist ul a {
+	font-weight:normal;
+	display:block;
+	padding-left:10px;
+}
+.navlist ul a:hover {
+background: url(http://www.hostool.com.br/template/imagens/dots.gif) no-repeat center left;
+color:#FF9900;
+}
+.navlist .bottom {
+background:#FCFCFC url(http://tbweb.servegame.com:8080/hostool/img/skins/system/menu-bottom.gif) no-repeat top left;
+width:180px;
+height:24px;
+border:none;
+}

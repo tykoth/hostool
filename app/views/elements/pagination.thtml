@@ -1,0 +1,7 @@
+<? if($pagination->setPaging($paging)): ?>
+<img src="img/skins/system/icons/grid-loading-done.gif" class="loading" />
+	<?=$pagination->firstPage('', false, true);?> <?=$pagination->prevPage('',false, true);?>
+	Página <input type="text" name="page" size="1" value="<?=$pagination->_pageDetails['page']?>"> de <?=$pagination->_pageDetails['pageCount']?>
+	<?=$pagination->nextPage('',false, true);?> <?=$pagination->lastPage('', false, true);?>
+	
+<? endif; ?>

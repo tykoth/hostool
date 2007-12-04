@@ -1,0 +1,45 @@
+<div style="position:absolute; top:0px;right:0px; text-align:left; width:500px;">
+				Fun&ccedil;&otilde;es do programador<br>
+				<button class="reload_css">Reload CSS</button>
+				<button class="disable_css">Disable CSS</button>
+				<button class="reload_js">Reload JS</button>
+				<button class="show_eval_js">Console JS</button>
+				<div class="js_console">
+					<textarea style="width:300px; height:100px"></textarea>
+					<br/><button class="eval_js">Eval JS</button>
+				</div>
+				
+				<script>
+				$("div.js_console").hide();
+				$("button.show_eval_js").toggle(
+					function(){$("div.js_console").show();},
+					function(){$("div.js_console").hide();}
+				);
+				
+				$("button.disable_css").toggle(
+					function(){
+						$("head link").each(function(){
+							$(this).disable();
+						});
+						$(this).html("Enable CSS");
+					},function(){
+						$("head link").each(function(){
+							$(this).enable();
+						});
+						$(this).html("Disable CSS");
+					}
+				)
+				
+				$("button.reload_css").click(function(){
+					$("head link").each(function(){
+//						alert($(this).attr("href"));
+						$(this).attr("href", $(this).attr("href") + "?refresh=" + Math.random());
+					})
+//					alert($("link#system_datagrid").attr("href"));
+				})
+				
+				$("button.eval_js").click(function(){
+					eval($("div.js_console textarea").val());
+				})
+				</script>
+</div>
