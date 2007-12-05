@@ -1,0 +1,37 @@
+/**
+ * Folha de estilo padrão do sistema Hostool
+ * Esta folha controla a estrutura (layout)
+ * @author Thiago Bocchile <tykoth@gmail.com>
+ */
+/*
+* {
+margin:0;
+}
+*/
+/* Janela */
+html, body {margin: 0;padding: 0;height: 100%;}
+
+/* Corpo (Documento) */
+body {height:100%;margin:0; padding:0;}
+
+/* Cabeçalho */
+#header {padding-top: 10px;clear: both;}
+#header h1 {display:block; width:157px; height:40px;margin:5px;text-indent:-9999px;padding-bottom:25px;}
+
+/* Conteudo */
+#content {margin-left: 280px;margin-right: 200px;}
+#content h1, #TB_ajaxContent h1 {padding-bottom:6px;}
+
+/* Conteudo > Formularios */
+fieldset {padding:10px;}
+fieldset p {clear:left;margin:0pt;padding:2px;padding-left:205px;height: 1%;}
+fieldset p label{float: left;margin-left: -205px;width: 196px;padding:3px;}
+label.error {margin:0px;float:none;width:auto;}
+
+button {padding:3px;}
+button.square {/*float:right;*/ margin:0px;width:15px; height:15px;}
+
+/* Rodapé */
+
+#footer {width:100%;}
+

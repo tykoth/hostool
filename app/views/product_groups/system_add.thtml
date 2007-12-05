@@ -1,0 +1,25 @@
+<fieldset>
+	<!-- legend>Adicionar cliente</legend -->
+	<p>
+		<label>Nome:</label>
+		<input type="text">
+	</p>
+	<p>
+		<label>Metodos de pagamento:</label>
+		<input type="checkbox"> Web - Google Checkout <br>
+		<input type="checkbox"> Web - Paypal <br>
+		<input type="checkbox"> Web - Pagseguro <br>
+		<input type="checkbox"> Depósito - Itau <br>
+		<input type="checkbox"> Depósito - Banco do Brasil <br>
+		<input type="checkbox"> Depósito - Caixa Economica Federal <br>
+		<input type="checkbox"> Boleto - Itau <br>
+		<input type="checkbox"> Boleto - Banco do Brasil <br>
+	</p>
+	<p>
+		<label>Status:</label>
+		<input type="radio" name="status"> Visivel para todos <br>
+		<input type="radio" name="status"> Visivel apenas link direto <br>
+		<input type="radio" name="status"> Invisivel <br>
+		<input type="radio" name="status"> Indisponível <br>
+	</p>
+</fieldset>

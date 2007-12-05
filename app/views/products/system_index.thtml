@@ -1,0 +1,39 @@
+<h1>Visualizar Clientes</h1>
+<fieldset>
+	<legend>Clientes</legend>
+	<table class="datagrid" width="100%" <? /* cellspacing="2" cellpadding="2" border="0" */ ?>>
+		<thead class="functions">
+			<tr>
+				<th><input type="checkbox"></th>	
+				<th>Nome do Produto</th>
+				<th>Tipo</th>
+				<th>Estoque</th>
+			</tr>
+		</thead>
+		<tbody class="data">
+			<? /*foreach ($client_data as $key => $data): ?>
+			<tr>
+				<td width="5%"><input type="checkbox" name="data[Client][id]" value="<?=$data['Client']['id']?>"> <span class="checkbox"></span></td>
+				<td width="30%"><?=$data['Client']['name']?></td>
+				<td><? foreach($data['Domain'] as $domain) echo "{$domain['url']} ({$domain['login']})<br/>"; ?></td>
+				<td width="10%">somar</td>
+			</tr>
+			<? endforeach; */?>
+		</tbody>
+		<tbody>
+			<tr>
+				<td colspan="4">
+				
+				<div class="navdata">
+					<? /*echo $this->renderElement('pagination'); */ ?>					
+				</div>
+				</td>		
+			</tr>
+		</tbody>
+	</table>
+</fieldset>
+
+<fieldset>
+	<legend>Pesquisar domínio / Cliente</legend>
+	<p><label for="q">Buscar por:</label><input type="text" name="q"></p>
+</fieldset>

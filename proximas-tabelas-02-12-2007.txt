@@ -1,0 +1,61 @@
+=============grupos================
+nome
+gateways (estudar)
+status
+===================================
+
+=============products==============
+type - 1:sharedhosting,2:reseller,3:vps,4:outros
+group_id
+name
+alias / permalink
+description
+welcome_email_id
+show_registration
+status
+pricing_type - 0:free,1:pay-once,2:periods
+enable_prorata
+prorata
+enable_stock
+stock
+
+whcp_id (web host control panel id)
+package_id
+on_register
+
+tax_product
+
+offer_free_domain
+free_domain_periods (a estudar)
+free_domain_tlds (a estudar)
+
+affiliate_id
+===================================
+
+==== product_addons ====
+name
+product_id
+
+
+=======Payment_Methods=============
+name
+type - 1:prepay_form,2:webpay,3:bank_account
+prepay_form_id
+webpay_id
+bank_account_id
+
+
+== prepay_forms ==
+nome
+	(BB, CEF, Itau)
+template
+configs
+
+== webpays ==
+name
+	(paypal, pagseguro, google_checkout)
+== bank_accounts ==
+name
+	(BB, CEF, Itau)
+agency 
+account

@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>:: Hostool - Host Solution Center ::</title>
+<? //= $html->css("style"); ?>
+<?= $html->css("system.wire", "stylesheet", array("id" => "system_wire")); ?>
+<?= $html->css("system.skin", "stylesheet", array("id" => "system_skin")); ?>
+<?= $html->css("system.misc", "stylesheet", array("id" => "system_misc")); ?>
+<?= $html->css("system.navlist", "stylesheet", array("id" => "system_navlist")); ?>
+<?= $html->css("system.datagrid", "stylesheet", array("id" => "system_datagrid")); ?>
+<?= $html->css("ui.tabs", "stylesheet", array("id" => "ui_tabs")); ?>
+<?= $html->css("ui.thickbox", "stylesheet", array("id" => "ui_thickbox")); ?>
+<script type="text/javascript"> 
+var baseURL = '<?= $html->url(""); ?>';
+var SystemURL = baseURL + "system/";
+
+var System = {
+	
+	// Param for ajax requests
+	url: baseURL + "system/",
+	
+	// Params for UI Tabs
+	tabs:{
+//		fxSlide: true,
+//		fxFade: true, 
+//		fxSpeed: 'fast' 
+	},
+	
+	// Params for HT Checkbox
+	checkbox:{
+		
+	}
+	
+};
+</script>
+<?= $javascript->link("jquery.core") 	/* jQuery Core */?>
+
+<?= $javascript->link("jquery.form") ?>
+<?= $javascript->link("jquery.validator") ?>
+<?= $javascript->link("jquery.metadata") ?>
+<?= $javascript->link("jquery.maskedinput") ?>
+
+<?= $javascript->link("jquery.tabs");		/* Abas */	?>
+<?= $javascript->link("jquery.thickbox");		/* Abas */	?>
+<?= $javascript->link("jquery.tooltip") ?>
+<?= $javascript->link("jquery.bgiframe") ?>
+<?= $javascript->link("jquery.dimensions") ?>
+
+
+<?= $javascript->link("jquery.commons")	/* Funções nativas do sistema */ ?>
+
+<?= $javascript->link("jquery.hostool");	/* Funções nativas */	?>
+
+
+</head>
+<body>
+	<div id="container">
+		<div id="header">
+			<h1>Hostool</h1>
+			<?=$this->renderElement('developer-tools'); ?>			
+		</div>
+		
+		<div id="navigation">
+			<?=utf8_encode($this->renderElement('navlist')); ?>
+		</div>
+		
+		<div id="content">
+			<?=$content_for_layout?>
+		</div>	
+		<div style="clear:both"></div>	  		
+	</div>
+	
+	<? /*<div id="footer"> <?=$this->renderElement('footer'); ?> </div> */ ?>
+</body>
+</html>
