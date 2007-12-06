@@ -1,0 +1,211 @@
+<style>
+fieldset label.error {
+float:none;
+clear:both;
+display:block;
+}
+
+</style>
+
+
+<h1>Adicionar novo Produto</h1>
+<form action="" method="POST" class="ajax">
+<fieldset>
+	<legend>Adicionar Produto</legend>
+	<div class="ui-tabs-container">
+		<ul class="ui-tabs-nav">
+	        <li><a href="#fragment-1"><span>Detalhes</span></a></li>
+	        <li><a href="#fragment-2"><span>Tarifas</span></a></li>
+	        <li><a href="#fragment-2"><span>Controle</span></a></li>
+	        <li><a href="#fragment-3"><span>Configurações</span></a></li>
+	        <li><a href="#fragment-4"><span>Dados de Acesso</span></a></li>
+	    </ul>	   
+	    <div id="fragment-1" class="ui-tabs-panel">
+		    <p>
+		    	<label>Tipo:</label> 
+		    	<select name="product_type">
+		    		<option value="1">Hospedagem</option>
+		    		<option value="2">Revenda</option>
+		    		<option value="3">VPS / Dedicado</option>
+		    		<option value="4">Outros</option>
+		    	</select>	
+		    </p>
+		    <p>
+		    	<label>Grupo:</label> 
+		    	<select name="product_group_id">
+		    		<option value="1">Hospedagem</option>
+		    		<option value="2">Revenda</option>
+		    		<option value="3">VPS / Dedicado</option>
+		    		<option value="4">Outros</option>
+		    	</select><button class="add_product_group">+</button>
+		    </p>
+		    <p>
+		    	<label>Nome:</label> 
+		    	<input class="{required:true}" id="data_client_name" name="" size="40" type="text">
+		    	<span class="help" title="Nome - Insira seu nome"></span>	
+		    </p>
+		    <p>
+		    	<label>Descrição:</label> 
+		    	<textarea></textarea>
+		    </p>
+		    <p>
+		    	<label>E-Mail de Boas Vindas:</label> 
+		    	<select name="welcomeemail"><option value="1">Hosting Account Welcome Email (cPanel)</option><option value="27">Hosting Account Welcome Email (Plesk)</option><option value="28">Hosting Account Welcome Email (DirectAdmin)</option><option value="5">Reseller Account Welcome Email</option><option value="18">Dedicated/VPS Server Welcome Email</option><option value="19">Other Product/Service Welcome Email</option><option value="26">SHOUTcast Welcome Email</option></select>
+				<button class="add_product_group">+</button>
+		    </p>
+		    <p>
+		    	<label>Exibir opção de dominío:</label> 
+		    	<input type="checkbox">
+		    </p>
+		</div>
+		<div id="fragment-2" class="ui-tabs-panel">
+		<fieldset>
+			<legend>Tarifamento</legend>			
+			<p>
+				<label>Gratuita</label>
+				<input type="radio" name="pricing_type" value="0"> Clientes recebem este produto gratuitamente
+			</p>
+			<p>
+				<label>Única</label>
+				<input type="radio" name="pricing_type" value="1"> Clientes pagam uma única vez por este produto
+			</p>
+			<p>
+			
+				<label>Periódica</label>
+				<input type="radio" name="pricing_type" value="2"> Clientes pagam periodicamente por este produto
+			</p>
+		</fieldset>
+		<fieldset>
+			<legend>Valores</legend>
+			<p>
+				<span style="display:block; width:80px; float:left; text-align:center; font-weight:bold;">Setup</span>
+				<span style="display:block; width:80px; float:left; text-align:center; font-weight:bold;">Preço</span>
+			</p>
+			<div class="added_itens">
+			
+			
+			</div>
+			
+			
+		</fieldset>
+					
+		</div>
+		<div id="fragment-3" class="ui-tabs-panel"></div>
+		<div id="fragment-4" class="ui-tabs-panel"></div>
+	     
+	</div>
+
+	<ul class="errors"></ul>
+</fieldset>
+</form>
+<script type="text/javascript">
+$("div#fragment-2").find("input[name='pricing_type']").click(function(){
+	$.get(baseURL + "system/products/get_pricings/" + this.value + "?layout=ajax",
+		function(html){
+			$(".added_itens").html(html);
+		}
+	);
+})
+$("button.add_product_group").click(function(){
+	tb_show("Adicionar novo grupo de produtos", baseURL + "system/product_groups/add?layout=ajax&height=480&width=640", false);
+//	tb_show("Adicionar novo grupo de produtos", "http://www.orkut.com", false);
+	return false;
+})
+
+$(".masked").maskAll();
+
+$("button.add_item").itemAddon();
+
+var validation_options = {
+
+	errorPlacement: function(error, element){
+		error.click(function(){
+			$("#" + $(this).find("label:first").attr("for")).tabFocus();
+		})
+		.hover(
+			function(){$(this).css("text-decoration", "underline")},
+			function(){$(this).css("text-decoration", "none")}
+		)
+		$("ul.errors").append(error);
+	},
+	wrapper: "li",
+	messages: {
+	 	"data[Client][name]" : {
+	 		"required":"Você deve informar o nome do cliente"
+	 	}
+	 	
+	}
+}
+var validator = $("form.ajax").validate(validation_options);
+
+
+
+$(".ui-tabs-container ul").tabs(System.tabs);
+//$(".ui-tabs-container ul").tabsClick(3);
+//$("input").focus(function(){alert($(this).val())});
+//$("input[name='data[User][login]']").focus(function(){
+//		var id = $("input[name='data[User][login]']").parents("div.ui-tabs-panel").attr("id").match(/\d/);
+//		$(".ui-tabs-container ul").tabsClick(id);
+//	});
+
+//$("button.add").disable();
+var options = {
+	url: System.url + 'clients/add/?layout=ajax',
+//	target:'div.form',
+	beforeSubmit:function(){		
+//		$("div.form").fadeOut('slow');
+	},
+	success:function(data){
+		alert(data)
+		//							alert("after");
+//		$('div.form').html(data);
+//		$('div.form').fadeIn('slow');
+		//$('form').ajaxForm(options);
+	}
+};
+
+$("button.add").click(function(){
+//	alert("Opa!");
+if(validator.form() == true)
+	$('form.ajax').ajaxSubmit(options);
+	return false;
+})
+$("button.enable").toggle(
+	function(){$("button.add").enable();},
+	function(){$("button.add").disable();}
+)
+
+
+
+//$("button.down").click(function(){
+//	$actual = $(this).parent();
+//	$upper = $actual.prev();
+//	$lower = $actual.next();
+//	alert($lower.html());
+//	
+//	
+//	return false;
+//});
+</script>
+
+
+
+
+
+
+<? /*
+			<table style="border:1px solid black; width:auto; border-collapse:collapse; margin-left:30px;">
+						<thead>
+							<tr>
+								<th width="120" colspan="2"> Tarifa Única</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td width="80">Setup</td><td><input type="text" size="2"></td>
+							</tr>
+							<tr>
+								<td>Preço</td><td><input type="text" size="2"></td>
+							</tr>
+						</tbody>
+					</table> */ ?>

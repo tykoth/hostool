@@ -1,0 +1,43 @@
+
+
+
+/* Itens */
+.added_itens {
+clear:both;
+/*padding:5px;*/
+}
+.added_itens div {
+margin-bottom:2px;
+padding:5px;
+clear:both;
+background:#FCFDDE none repeat scroll 0%;
+border:1px solid green;
+font-size:10px;
+}
+.added_itens span {
+clear:both;
+padding-left:15px;
+font-weight:bold;
+}
+.added_itens label {
+background:none;
+}
+.added_itens .data {
+border:none;
+margin:0px;
+padding:0px;
+font-weight:normal;
+}
+
+button.box {border:none; width:15px; height:15px;}
+
+/* Buttons */
+button.edit 	{background:url(/hostool/img/skins/system/icons/edit.gif) center center no-repeat;}
+button.delete 	{background:url(/hostool/img/skins/system/icons/delete.gif) center center no-repeat;}
+
+button.up 		{background:url(/hostool/img/skins/system/icons/up.png) center center no-repeat;}
+button.down 	{background:url(/hostool/img/skins/system/icons/down.png) center center no-repeat;}
+
+
+ul.errors {margin:0; padding:0;}
+ul.errors li {list-style:none;}

@@ -1,0 +1,103 @@
+<? $pagination->setPaging($paging); ?>
+<h1>Visualizar Clientes</h1>
+
+<fieldset>
+	<legend>Clientes</legend>
+	<table class="datagrid" width="100%" <? /* cellspacing="2" cellpadding="2" border="0" */ ?>>
+		<thead class="functions">
+			<tr>
+				<th><input type="checkbox"></th>	
+				<th><?=$pagination->sortBy('name', 'Nome', 'Client')?></th>
+				<th>Dominios</th>
+				<th>fatura</th>
+			</tr>
+		</thead>
+		<tbody class="data">
+			<? foreach ($client_data as $key => $data): ?>
+			<tr>
+				<td width="5%"><input type="checkbox" name="data[Client][id]" value="<?=$data['Client']['id']?>"> <span class="checkbox"></span></td>
+				<td width="30%"><?=$data['Client']['name']?></td>
+				<td><? foreach($data['Domain'] as $domain) echo "{$domain['url']} ({$domain['login']})<br/>"; ?></td>
+				<td width="10%">somar</td>
+			</tr>
+			<? endforeach; ?>
+		</tbody>
+		<tbody>
+			<tr>
+				<td colspan="4">
+				
+				<div class="navdata">
+					<? echo $this->renderElement('pagination'); ?>					
+				</div>
+				</td>		
+			</tr>
+		</tbody>
+	</table>
+</fieldset>
+
+<fieldset>
+	<legend>Pesquisar domínio / Cliente</legend>
+	<p><label for="q">Buscar por:</label><input type="text" name="q"></p>
+</fieldset>
+
+
+<script type="text/javascript">
+
+$("tbody.data tr").selectableLine();
+$("thead.functions :checkbox").selectAllLines("tbody.data :checkbox");
+
+$("button.edit").click(function(){
+	var $checked = "";
+	$(":checkbox").each(function(){
+		$checked+= this.name + " " + this.checked + "\n";
+	})
+	alert($checked);
+});
+
+$("button.delete").click(function(){
+	$(":checkbox").each(function(){alert(this.checked)})
+});
+
+$(".navdata").find("button.disabled").disable();
+
+$(".navdata").find("button").not(".disabled").each(function(){
+//	$(this).attr("go",$(this).attr("href"));
+//	$(this).attr("href", "");
+	$(this).hover(function(){$(this).addClass("hover")}, function(){$(this).removeClass("hover")});
+	$(this).bind('click', function(){
+		$(".navdata").find("img.loading").attr("src", "<?=$html->url("/");?>img/skins/system/icons/grid-loading.gif");
+		$.ajax({
+			url: $(this).attr("go"),
+			type: "GET",
+			dataType: "html",
+			success: function(html){				
+				$("div#content").html(html);
+				$("div#content").fadeIn('fast');
+			}
+		});
+		return false;
+	})
+})
+
+$("#content").find("a").each(function(){
+	$(this).attr("go",$(this).attr("href"));
+	$(this).attr("href", "");
+	$(this).bind('click', function(){
+		$.ajax({
+			url: $(this).attr("go"),
+			type: "GET",
+			dataType: "html",
+			success: function(html){
+				$("div#content").html(html);
+				$("div#content").fadeIn('fast');
+			}
+		});
+		return false;
+	})
+	
+})
+//attr("go", $(this).attr("href")).click(function(){
+//	alert($(this).attr("go")); return false;
+//});
+</script>
+

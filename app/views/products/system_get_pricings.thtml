@@ -1,0 +1,18 @@
+<? switch($pricing_type){
+	case 0: ?>	
+	Free		
+<? break;
+	case 1: ?>
+	<p>
+		<label>Tarifa Única</label><input type="text" style="width:80px;"><input type="text" style="width:80px;">
+	</p>
+<? break;
+	case 2: ?>
+	<? foreach ($periods as $period): $period = $period['Period']; ?>
+		<p>
+			<label><?= $period['name'] ?></label><input type="text" style="width:80px;"><input type="text" style="width:80px;">
+		</p>
+	<? endforeach; ?>
+<? break;
+} 
+?>

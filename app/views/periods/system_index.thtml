@@ -1,0 +1,117 @@
+<h1>Configurar Periodicidades</h1>
+<form action="" method="POST" class="ajax" id="add">
+<fieldset>
+	<legend>Adicionar Periodicidades</legend>
+	<p>
+		<label>Nome</label>
+		<input type="text" name="data[Period][name]" class="{required:true}">
+	</p>
+	<p>
+		<label>Unidade periódica</label>
+		<input type="text" name="data[Period][period_amount]" class="{required:true, number:true}" size="1">
+		<select name="data[Period][period_type]">
+			<option value="1">Dia(s)</option>
+			<option value="2">Semana(s)</option>
+			<option value="3">Mês(es)</option>
+			<option value="4">Ano(s)</option>
+		</select>
+	</p>
+	<p>
+		<button class="add">Adicionar periodo</button>
+	</p>
+	<ul class="errors"></ul>
+</fieldset>
+</form>
+<form class="mass" method="POST" >
+<fieldset>
+	<legend>Lista de periodicidades</legend>
+	<table class="datagrid" width="100%">
+		<thead class="functions">
+			<tr>
+				<th width="5%"><input type="checkbox"></th>	
+				<th width="15%">Nome</th>	
+				<th width="15%">Qtd</th>
+				<th>Simulação <small>(baseado na data de hoje)</small></th>
+				<th width="3%"></th>
+				<th width="3%"></th>
+			</tr>
+		</thead>
+		<tbody class="data">
+			<? foreach ($periods as $period): $period = $period['Period']; ?>
+			<tr>
+				<td><input type="checkbox" value="<?= $period['id'] ?>" name="data[][Period][id]"><span class="checkbox"/></td>
+				<td><?= $period['name'] ?></td>
+				<td><?= $period['period_amount'] ?> <?= $period['period_type_label'] ?></td>
+				<td><?= date("d/m/Y", strtotime("+{$period['period_amount']} {$period['period_type_string']}"))	?></td>
+				<td align="right"><button class="box edit"></button></td>
+				<td align="right"><button class="box delete"></button></td>
+				
+			</tr>
+			<? endforeach; ?>
+		</tbody>
+	</table>
+	<button class="massdelete">Mass Delete</button>
+</fieldset>
+</form>
+<script>
+$("tbody.data tr").selectableLine();
+$("thead.functions :checkbox").selectAllLines("tbody.data :checkbox");
+$("button.massdelete").click(function(){
+	$("form.mass").ajaxSubmit(mass_options);
+	return false;
+})
+$("button.delete").click(function(){
+	if(confirm("Deseja mesmo deletar este periodo?\nAVISO:\nAo deletar este periodo, estará desconfigurando produtos e serviços dependentes desse período"))
+	$.get(baseURL + "system/periods/del/" + $(this).parents("tr").find("input:checkbox").val() + "?layout=ajax", function(html){
+		$("div#content").html(html);
+	});
+	return false;
+});
+$("button.edit").click(function(){
+	tb_show("Editar periodicidade", baseURL + "system/periods/edit/" + $(this).parents("tr").find("input:checkbox").val() + "?layout=ajax&width=400&height=150")
+	return false;
+})
+var validation_options = {
+
+	errorPlacement: function(error, element){
+		error.click(function(){
+			$("input[name='" + $(this).find("label:first").attr("for") + "']").focus();
+		})
+		.hover(
+			function(){$(this).css("text-decoration", "underline")},
+			function(){$(this).css("text-decoration", "none")}
+		)
+		$("ul.errors").append(error);
+	},
+	wrapper: "li",
+	messages: {
+	 	"data[Period][name]" : {
+	 		"required":"Você deve informar um nome para o periodo."
+	 	},
+	 	"data[Period][period_amount]" : {
+	 		"required":"Você deve informar a quantia do periodo.",
+	 		"number":"O valor do período é um número"
+	 	}	 	
+	}
+}
+var validator = $("form.ajax").validate(validation_options);
+var add_options = {
+	url: System.url + 'periods/add/?layout=ajax',
+	success:function(html){
+		$("div#content").html(html);
+	}
+};
+var mass_options = {
+	url: System.url + 'periods/del/?layout=ajax',
+	success:function(html){
+		$("div#content").html(html);
+	}
+	
+}
+
+$("button.add").click(function(){
+if(validator.form() == true)
+	$('form.ajax').ajaxSubmit(add_options);
+	return false;
+})
+</script>

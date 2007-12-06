@@ -1,0 +1,74 @@
+/* Datagrid Style */
+.datagrid {
+border:1px solid #000;
+font-size:12px;
+padding:0px;
+border-collapse: collapse
+}
+.datagrid th, .datagrid td {
+padding:0px;
+vertical-align:top;
+}
+.datagrid thead tr {
+background:#C2E9E9;
+}
+.datagrid th {
+
+}
+.datagrid td {
+border:1px solid black;
+}
+.navdata {
+text-align:center;
+vertical-align:center;
+padding:5px;
+}
+.navdata input {
+height:15px;
+padding:0px;
+line-height:15px;
+}
+
+.selected {
+background:#FCFDDE;
+}
+
+.hover {
+/*background:#cdaeef;*/
+}
+
+.selected-hover {
+background:#FFFF00;
+}
+
+span.checkbox {
+background:url(/hostool/img/skins/system/icons/data-unchecked.gif) center center no-repeat;
+display:block;
+width:100%;
+height:25px;
+}
+
+.selected span.checkbox {background-image:url(/hostool/img/skins/system/icons/data-checked.gif);}
+
+.navdata {}
+.navdata button {width:16px; height:16px; border:none;}
+.navdata input {font-size:12px; padding:0px; text-align:center;}
+.navdata img.loading {float:right}
+
+/* navdata buttons */
+.navdata button.first	{background:url(/hostool/img/skins/system/icons/page-first-hover.png)}
+.navdata button.prev	{background:url(/hostool/img/skins/system/icons/page-prev-hover.png)}
+.navdata button.next	{background:url(/hostool/img/skins/system/icons/page-next-hover.png)}
+.navdata button.last	{background:url(/hostool/img/skins/system/icons/page-last-hover.png)}
+
+/* navdata hovered buttons */
+.navdata button.first.hover	{background:url(/hostool/img/skins/system/icons/page-first.png)}
+.navdata button.prev.hover	{background:url(/hostool/img/skins/system/icons/page-prev.png)}
+.navdata button.next.hover	{background:url(/hostool/img/skins/system/icons/page-next.png)}
+.navdata button.last.hover	{background:url(/hostool/img/skins/system/icons/page-last.png)}
+
+/* navdata disabled buttons */
+.navdata button.first.disabled	{background:url(/hostool/img/skins/system/icons/page-first-disabled.png)}
+.navdata button.prev.disabled	{background:url(/hostool/img/skins/system/icons/page-prev-disabled.png)}
+.navdata button.next.disabled	{background:url(/hostool/img/skins/system/icons/page-next-disabled.png)}
+.navdata button.last.disabled	{background:url(/hostool/img/skins/system/icons/page-last-disabled.png)}

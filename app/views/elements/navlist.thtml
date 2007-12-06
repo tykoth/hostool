@@ -1,0 +1,82 @@
+<ul class="navlist">
+	<a href="#1" class="top">HOME</a>
+	<li class="fasts">
+		<a href="#1">Links Rápidos</a>
+			<ul>
+				<li><a href="<?=$html->url("/system/users/my")?>">Atualizar Meus Dados</a></li>
+				<li><a href="<?=$html->url("/system/users/my/password")?>">Atualizar Senha</a></li>
+				<li>Fechar Sessão</li>
+			</ul>
+	</li>	
+	<li class="slideit">
+		<a href="#1" class="head">Clientes</a>
+			<ul>
+				<li><a href="<?=$html->url("/system/clients/prospects")?>">Prospectos</a></li>
+				<li><a href="<?=$html->url("/system/clients/index")?>">Visualizar/Procurar Clientes</a></li>
+				<li><a href="<?=$html->url("/system/clients/add")?>">Adicionar novo Cliente</a></li>
+				<li><a href="<?=$html->url("/system/domains/index")?>">Visualizar Domínios</a></li>
+				<li><a href="<?=$html->url("/system/domains/add")?>">Cadastrar novo Domínio</a></li>
+				<li><a href="<?=$html->url("/system/clients/log")?>">Relatório de Clientes</a></li>
+				<li><a href="<?=$html->url("/system/domains/log")?>">Relatório de Domínios</a></li>
+				<li><a href="<?=$html->url("/system/domains/thrash")?>">Lixeira de Domínios</a></li>
+			</ul>
+	</li>	
+	
+	<li class="slideit">
+		<a href="#2" class="head">Produtos e Serviços</a>
+			<ul>
+				<li><a href="<?=$html->url("/system/products/index")?>">Visutalizar</a></li>
+				<li><a href="<?=$html->url("/system/products/add")?>">Adicionar Produto</a></li>
+				<li>Prospectos</li>
+				<li>Prospectos</li>
+			</ul>
+	</li>	
+	
+	<li class="slideit">
+		<a href="#3" class="head">Configurações</a>
+			<ul>
+				<li><a href="<?=$html->url("/system/periods/index")?>">Periodicidades</a></li>
+			</ul>
+	</li>
+	
+	<li class="bottom"></li>
+</ul>
+		
+
+
+<script type="text/javascript">
+
+$('ul.navlist li.slideit ul').hide();
+
+$('ul.navlist li.slideit a').click(function() {
+	var $list = $(this).next();
+	var $visibles = $list.parent().siblings('.slideit').children('ul:visible');
+
+	if ($visibles.length) {
+		$visibles.slideUp('fast', function() {
+			$list.slideToggle('fast');
+		});
+	} else {
+		$list.slideToggle('fast');
+	}
+	return false;
+});
+
+$('ul.navlist ul a').click(function(){
+	
+	$("div#content").fadeOut('fast');
+	
+	$.ajax({
+		url: this.href + '?layout=ajax',
+		type: "GET",
+		cache: false,
+		dataType: "html",
+		success: function(html){
+			$("div#content").html(html);
+//			$("div#content").show();
+			$("div#content").fadeIn('fast');
+		}
+	});
+	return false;
+})
+</script>

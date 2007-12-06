@@ -1,0 +1,46 @@
+<h1>Configurar Periodicidades</h1>
+<form action="" method="POST" class="edit">
+<fieldset>
+	<legend>Adicionar Periodicidades</legend>
+	<p>
+		<label>Nome</label>
+		<input type="text" name="data[Period][name]" class="{required:true}" value="<?= $period['Period']['name'] ?>">
+	</p>
+	<p>
+		<label>Unidade periódica</label>
+		<input type="text" name="data[Period][period_amount]" class="{required:true, number:true}" size="1" value="<?= $period['Period']['period_amount'] ?>">
+		<select name="data[Period][period_type]">
+			<option value="1" <?= ($period['Period']['period_type'] == 1) ? "selected=\"selected\"" : ""; ?>>Dia(s)</option>
+			<option value="2" <?= ($period['Period']['period_type'] == 2) ? "selected=\"selected\"" : ""; ?>>Semana(s)</option>
+			<option value="3" <?= ($period['Period']['period_type'] == 3) ? "selected=\"selected\"" : ""; ?>>Mês(es)</option>
+			<option value="4" <?= ($period['Period']['period_type'] == 4) ? "selected=\"selected\"" : ""; ?>>Ano(s)</option>
+		</select>
+	</p>
+	<p>
+		<button class="edit">Adicionar periodo</button>
+	</p>
+	<input type="hidden" name="data[Period][id]" value="<?= $period['Period']['id'] ?>"/>
+	<ul class="errors"></ul>
+</fieldset>
+</form>
+
+<script>
+
+var edit_validator = $("form.edit").validate(validation_options);
+
+var edit_options = {
+	url: System.url + 'periods/edit/?layout=ajax',
+	success:function(html){
+		tb_remove();
+		$("div#content").html(html);		
+	}
+	
+}
+
+$("form.edit").find("button.edit").click(function(){
+	if(edit_validator.form() == true)
+	$('form.edit').ajaxSubmit(edit_options);
+	return false;
+})
+
+</script>
